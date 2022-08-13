@@ -1,0 +1,75 @@
+label{
+    display: block;
+    margin-left: 10%;
+    margin-bottom: 15px;
+    font-size:larger;
+}
+.skillsText{
+    margin-left: 10%;
+    margin-bottom: 15px;
+    width: 68%;
+}
+
+.cvform{
+   
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 80vw;
+    background-color: rgb(218, 218, 218);
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+
+input{
+    display: block;
+    width: 75%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 0;
+    padding-left: 5px;
+    height: 24px;
+}
+
+.half{
+    display: inline;
+    margin-right: 4.5%;
+    width: 35%;
+}
+.third{
+    display: inline;
+    margin-right: 7%;
+    width: 20%;
+}
+.inputGroup{
+    margin-top: 5px;
+}
+.personalInfo{
+    margin-bottom: 30px;
+}
+textarea{
+    display: block;
+    width: 75%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 0;
+    padding-left: 5px;
+}
+.firstRow{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 25%;
+    font-size:large;
+}
+.close{
+    border: 0;
+    background-color: transparent;
+}
+.close:focus{background-color:rgb(171, 171, 171);}
+
+hr{
+    width: 70%;
+    margin-left: 10%;
+}

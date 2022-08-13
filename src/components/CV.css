@@ -1,0 +1,130 @@
+.cv{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 80vw;
+    background-color: rgb(218, 218, 218);
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.cv .personalInfo{
+    height: 260px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cv table{
+    
+    width: 90%;
+    height: 100%;
+    
+}
+.cv td{
+    padding: 0;
+    margin: 0; 
+    font-size: smaller;
+}
+.cv .address{
+    padding-left: 10%;
+}
+
+.cv .first{
+    width: 70%;
+}
+.cv .contacts{
+    display: flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap: 50px;  
+}
+.cv .aboutMe{
+    width: 90%;
+    display: block;
+
+}
+.cv .aboutMe h3{
+    margin-left: -5%;
+
+}
+.cv .aboutMe p{
+    width: 90%;
+    white-space: pre-line;
+    margin-left: 5%;
+}
+
+.cv hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    margin-left: 0;
+}
+
+.contacts h4{
+    
+    display: inline;
+}
+
+.cv .education .dates{
+    width: 20%;
+    margin-left: 5%;
+}
+.cv .work .dates{
+    width: 20%;
+    margin-left: 5%;
+}
+
+.cv .education table{
+    
+    margin-left: 5%;
+}
+.cv .work table{
+    
+    margin-left: 5%;
+}
+.cv .education {
+    width: 90%;
+    display: block;
+}
+
+
+.cv h4{
+    font-size: large;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.cv h5{
+    font-size: medium;
+    font-weight: 300;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.cv .work {
+    width: 90%;
+    display: block;
+}
+.cv .work {
+    white-space: pre-line;
+    
+}
+
+
+    
+
+@media (max-width: 768px) {
+   .cv{
+    width: 100%;
+    padding: 5px;
+   }
+   .cv table{
+    width: 100%;
+    }
+    .cv .first{
+        width: 60%;
+    }
+
+  }

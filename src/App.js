@@ -2,8 +2,10 @@
 import { Component } from 'react';
 import * as uuid from "uuid";
 import './App.css';
+import { CV } from './components/CV';
 import { CVForm } from './components/CVform';
 import { Navbar } from "./components/navbar";
+
 
 
 class App extends Component{
@@ -11,9 +13,11 @@ class App extends Component{
     super();
 
     this.state ={
-      personalInfo:{name:'',surname:'',phone:0,email:'',address1:'',address2:'',zip:'',city:'',state:'',photo:''},
-      workExperiences:[{id:uuid.v4(),schoolName:'',titleOfStudy:'',startDate:'',endDate:''}],
-      education:[{id:uuid.v4(),company:'',position:'',tasks:'',startDate:'',endDate:''}],
+      personalInfo:{name:'',surname:'',phone:'',email:'',address1:'',address2:'',zip:'',city:'',state:'',photo:'',aboutMe:''},
+      education:[{id:uuid.v4(),schoolName:'',titleOfStudy:'',startDate:'',endDate:''}],
+      workExperiences:[{id:uuid.v4(),company:'',position:'',tasks:'',startDate:'',endDate:''}],
+      skills:'',
+      updateValues:true,
      
     }
     this.handleNameUpdate = this.handleNameUpdate.bind(this);
@@ -39,6 +43,9 @@ class App extends Component{
     this.handleTitleUpdate = this.handleTitleUpdate.bind(this);
     this.handleEducationStartDateUpdate = this.handleEducationStartDateUpdate.bind(this);
     this.handleEducationEndDateUpdate = this.handleEducationEndDateUpdate.bind(this);
+    this.handleSkillsUpdate = this.handleSkillsUpdate.bind(this);
+    this.handleAboutMEUpdate = this.handleAboutMEUpdate.bind(this);
+    this.handleUpdateValuesUpdate = this.handleUpdateValuesUpdate.bind(this);
   }
   //Handles for updates of personal info
 
@@ -173,6 +180,9 @@ class App extends Component{
                     photo:photo}
     });
   }
+  handleAboutMEUpdate(text){
+    this.setState(prevState => ({personalInfo:{...prevState.personalInfo,aboutMe:text}}));
+  }
 
   //Handlers for updates of Work parts
   handleWorkExperienceAdd(){
@@ -246,7 +256,16 @@ class App extends Component{
       education:this.state.education.map(el =>(el.id ===uuid?{...el,endDate:endDate}:el))
   });
   }
-
+ handleSkillsUpdate(skills){
+  this.setState({
+    skills:skills
+  });
+ }
+ handleUpdateValuesUpdate(){
+    this.setState((prevState)=>({
+      updateValues:!prevState.updateValues
+    }));
+ }
 
 
 
@@ -259,35 +278,51 @@ class App extends Component{
 
           
           <div className='content'>
-            <CVForm
-              personalInfo = {this.state.personalInfo}
-              works = {this.state.workExperiences}
-              education = {this.state.education}
-              nameChange = {this.handleNameUpdate}
-              surnameChange = {this.handleSurnameUpdate}
-              phoneChange = {this.handlePhoneUpdate}
-              emailChange = {this.handleEmailUpdate}
-              address1Change = {this.handleAddress1Update}
-              address2Change = {this.handleAddress2Update}
-              cityChange = {this.handleCityUpdate}
-              photoChange = {this.handlePhotoUpdate}
-              stateChange = {this.handleStateUpdate}
-              zipChange = {this.handleZipUpdate}
-              schoolChange = {this.handleSchoolNameUpdate}
-              titleChange = {this.handleTitleUpdate}
-              startDateChange = {this.handleEducationStartDateUpdate}
-              endDateChange = {this.handleEducationEndDateUpdate}
-              companyChange = {this.handleCompanyUpdate}
-              positionChange = {this.handlePositionUpdate}
-              tasksChange = {this.handleTasksUpdate}
-              startDateWorkChange = {this.handleStartDateUpdate}
-              endDateWorkChange = {this.handleEndDateUpdate}
-            
-            
+            {this.state.updateValues
+            ?<CVForm
+            personalInfo = {this.state.personalInfo}
+            works = {this.state.workExperiences}
+            skills = {this.state.skills}
+            education = {this.state.education}
+            nameChange = {this.handleNameUpdate}
+            surnameChange = {this.handleSurnameUpdate}
+            phoneChange = {this.handlePhoneUpdate}
+            emailChange = {this.handleEmailUpdate}
+            address1Change = {this.handleAddress1Update}
+            address2Change = {this.handleAddress2Update}
+            cityChange = {this.handleCityUpdate}
+            photoChange = {this.handlePhotoUpdate}
+            aboutMeChange = {this.handleAboutMEUpdate}
+            stateChange = {this.handleStateUpdate}
+            zipChange = {this.handleZipUpdate}
+            schoolChange = {this.handleSchoolNameUpdate}
+            titleChange = {this.handleTitleUpdate}
+            startDateChange = {this.handleEducationStartDateUpdate}
+            endDateChange = {this.handleEducationEndDateUpdate}
+            companyChange = {this.handleCompanyUpdate}
+            positionChange = {this.handlePositionUpdate}
+            tasksChange = {this.handleTasksUpdate}
+            startDateWorkChange = {this.handleStartDateUpdate}
+            endDateWorkChange = {this.handleEndDateUpdate}
+            workDelete = {this.handleWorkExperienceDelete}
+            educationDelete = {this.handleEducationDelete}
+            workAdd = {this.handleWorkExperienceAdd}
+            educationAdd = {this.handleEducationAdd}
+            skillsChange = {this.handleSkillsUpdate}
+            aboutChange = {this.handleAboutMEUpdate}
+          />
+            :<CV
+            personalInfo = {this.state.personalInfo}
+            works = {this.state.workExperiences}
+            skills = {this.state.skills}
+            education = {this.state.education}
             />
+          }
+            
           </div>
           <div className='bottombar'>
-          
+          {!this.state.updateValues && <button className='export'>Export PDF</button> }
+          <button className='submit' onClick={this.handleUpdateValuesUpdate}>{this.state.updateValues? "Submit":"Edit"}</button>
           </div>
           
     </div>);

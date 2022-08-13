@@ -1,8 +1,22 @@
+body, div, form, input, select, p { 
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  color: #666;
+  line-height: 22px;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+}
+
+
 .app{
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-rows: 1fr 14fr 1fr;
 }
 
 .topbar{
@@ -12,13 +26,48 @@
 }
 .bottombar{
   width:100%;
+  display: flex;
+  justify-content: flex-end;
   grid-row-start: 3;
   grid-row-end: 4; 
 }
 
 .content{
   display: flex;
+  justify-content: center;
   width: 100%;
   grid-row-start: 2;
   grid-row-end: 3;
+  overflow-y: auto;
+}
+
+.add{
+  height: 2em;
+  display: flex;
+  justify-content: flex-end;
+  width:70%;
+  font-size: larger;
+  margin-left: 10%;
+  
+}
+
+.add button{
+  border-radius: 7px;
+}
+
+.submit{
+  margin-right: 9%;
+  height: 40px;
+  width: 80px;
+  margin-top: 5px;
+  background-color: rgb(222, 225, 219);
+  border-radius: 7px;
+}
+.export{
+  margin-right: 5px;
+  height: 40px;
+  width: 80px;
+  margin-top: 5px;
+  background-color: rgb(222, 225, 219);
+  border-radius: 7px;
 }

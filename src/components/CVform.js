@@ -1,4 +1,6 @@
 import { Component } from "react";
+import './CVform.css';
+import * as uuid from "uuid";
 
  class PersonalInfoForm extends Component{
     constructor(props){
@@ -13,7 +15,7 @@ import { Component } from "react";
         this.handleStateChange = this.handleStateChange.bind(this);
         this.handleSurnameChange = this.handleSurnameChange.bind(this);
         this.handleZIPChange = this.handleZIPChange.bind(this);
-        this.handlePhotoChange =this.handlePhotoChange.bind(this);
+        this.handleAboutMeChange = this.handleAboutMeChange.bind(this);
 
     }
 
@@ -27,6 +29,7 @@ import { Component } from "react";
         this.props.emailChange(e.target.value);
     }
     handlePhoneChange(e){
+
         this.props.phoneChange(e.target.value);
     }
     handleAddress1Change(e){
@@ -36,7 +39,7 @@ import { Component } from "react";
         this.props.address2Change(e.target.value);
     }
     handleCityChange(e){
-        this.props.CityChange(e.target.value);
+        this.props.cityChange(e.target.value);
     }
     handleZIPChange(e){
         this.props.zipChange(e.target.value);
@@ -44,83 +47,106 @@ import { Component } from "react";
     handleStateChange(e){
         this.props.stateChange(e.target.value);
     }
-    handlePhotoChange(e){
-        this.props.photoChange(e.target.value);
+    handleAboutMeChange(e){
+        this.props.aboutChange(e.target.value);
     }
+    
 
     render(){
         return(<div className="personalInfo">
-            <label> First Name:
+                
+            <label> Name
+                <div className="inputGroup">
                 <input
                     type="text"
+                    className="half"
                     value={this.props.personalInfo.name}
+                    placeholder="First name"
                     onChange={this.handleNameChange}
                 />
-            </label>
-            <label> Last Name:
                 <input
                     type="text"
+                    className="half"
                     value={this.props.personalInfo.surname}
+                    placeholder="Last name"
                     onChange={this.handleSurnameChange}
                 />
+                </div>
+                
             </label>
-            <label> Email:
-                <input
-                    type="email"
-                    value={this.props.personalInfo.email}
-                    onChange={this.handleEmailChange}
-                />
+            <label> Contact Info
+                <div  className="inputGroup">
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        className="half"
+                        value={this.props.personalInfo.email}
+                        onChange={this.handleEmailChange}
+                    />
+                     <input
+                        type="tel"
+                        className="half"
+                        placeholder="Phone number"
+                        maxLength={10}
+                        onKeyPress={(event) => {
+                            if (!/[0-9]/.test(event.key)) {
+                              event.preventDefault();
+                            }
+                          }}
+                        value={this.props.personalInfo.phone}
+                        onChange={this.handlePhoneChange}
+                    />
+                </div>
+                
             </label>
-            <label> Phone Number:
-                <input
-                    type="tel"
-                    value={this.props.personalInfo.phone}
-                    onChange={this.handlePhoneChange}
-                />
-            </label>
-            <label> Address Line 1:
+            <label> Address Information
+                <div  className="inputGroup">
                 <input
                     type="text"
+                    placeholder="Adress Line 1"
                     value={this.props.personalInfo.address1}
                     onChange={this.handleAddress1Change}
                 />
-            </label>
-            <label> Address Line 2:
                 <input
                     type="text"
+                    placeholder="Adress Line 2"
                     value={this.props.personalInfo.address2}
                     onChange={this.handleAddress2Change}
                 />
-            </label>
-            <label> City:
                 <input
                     type="text"
+                    className="third"
+                    placeholder="City"
                     value={this.props.personalInfo.city}
                     onChange={this.handleCityChange}
                 />
-            </label>
-            <label> Zip Code:
                 <input
                     type="text"
+                    className="third"
+                    placeholder="Zip Code"
                     value={this.props.personalInfo.zip}
                     onChange={this.handleZIPChange}
                 />
-            </label>
-            <label> State:
                 <input
                     type="text"
+                    className="third"
+                    placeholder="State"
                     value={this.props.personalInfo.state}
                     onChange={this.handleStateChange}
                 />
+
+                </div>
+                
             </label>
-            <label> Photo:
-                <input
-                    type="image"
-                    value={this.props.personalInfo.photo}
-                    onChange={this.handlePhotoChange}
-                    alt="your image"
-                />
-            </label>
+            <label> About Me
+                    <textarea
+                        data-id={this.props.personalInfo.id}
+                        rows={5}
+                        value={this.props.personalInfo.aboutMe}
+                        onChange={this.handleAboutMeChange}
+                    />
+                </label>
+
         </div>);
     }
 
@@ -134,54 +160,73 @@ import { Component } from "react";
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleStartDateChange =this.handleStartDateChange.bind(this);
         this.handleEndDateChange = this.handleEndDateChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
     handleSchoolNameChange(e){
-        this.props.schoolChange(e.target.getAttribute('data-id'),e.target.value)
+        this.props.schoolChange(e.target.getAttribute('data-id'),e.target.value);
     }
     handleTitleChange(e){
-        this.props.titleChange(e.target.getAttribute('data-id'),e.target.value)
+        this.props.titleChange(e.target.getAttribute('data-id'),e.target.value);
     }
     handleStartDateChange(e){
-        this.props.startDateChange(e.target.getAttribute('data-id'),e.target.value)
+        this.props.startDateChange(e.target.getAttribute('data-id'),e.target.value);
     }
     handleEndDateChange(e){
-        this.props.endDateChange(e.target.getAttribute('data-id'),e.target.value)
+        this.props.endDateChange(e.target.getAttribute('data-id'),e.target.value);
+    }
+    handleDelete(e){
+        this.props.handleDelete(e.target.getAttribute('data-id'));
     }
 
     render(){
         return(<div>
-                <label> School Name:
-                    <input
-                    data-id={this.props.education.id}
-                    type="text"
-                    value={this.props.education.schoolName}
-                    onChange={this.handleSchoolNameChange}
-                    />
+                <label> 
+                    <div className="firstRow">
+                        Program information
+                        <button className="close" alt="Delete" data-id={this.props.education.id} onClick={this.handleDelete} >X</button>
+                    </div>
+                    <div className="inputGroup">
+                        <input
+                            data-id={this.props.education.id}
+                            type="text"
+                            placeholder="School Name"
+                            value={this.props.education.schoolName}
+                            onChange={this.handleSchoolNameChange}
+                        />
+                         <input
+                            data-id={this.props.education.id}
+                            type="text"
+                            placeholder="Title of Study:"
+                            value={this.props.education.title}
+                            onChange={this.handleTitleChange}
+                        />
+
+                    </div>                   
                 </label>
-                <label> Title of Study:
-                    <input
-                    data-id={this.props.education.id}
-                    type="text"
-                    value={this.props.education.title}
-                    onChange={this.handleTitleChange}
-                    />
+                <label> Education Dates
+
+                    <div className="inputGroup">
+                        <input
+                            data-id={this.props.education.id}
+                            type="month"
+                            className="half"
+                            placeholder="Start date"
+                            value={this.props.education.startDate}
+                            onChange={this.handleStartDateChange}
+                        />
+                        <input
+                            data-id={this.props.education.id}
+                            type="month"
+                            className="half"
+                            placeholder="End date"
+                            value={this.props.education.endDate}
+                            onChange={this.handleEndDateChange}
+                        />
+
+                    </div>
+                    
                 </label>
-                <label> Start Date:
-                    <input
-                    data-id={this.props.education.id}
-                    type="date"
-                    value={this.props.education.startDate}
-                    onChange={this.handleStartDateChange}
-                    />
-                </label>
-                <label> End Date:
-                    <input
-                    data-id={this.props.education.id}
-                    type="date"
-                    value={this.props.education.endDate}
-                    onChange={this.handleEndDateChange}
-                    />
-                </label>
+                
 
         </div>);
 
@@ -196,6 +241,7 @@ import { Component } from "react";
         this.handleTasksChange = this.handleTasksChange.bind(this);
         this.handleStartDateChange = this.handleStartDateChange.bind(this);
         this.handleEndDateChange = this.handleEndDateChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
     handleCompanyChange(e){
         this.props.companyChange(e.target.getAttribute('data-id'),e.target.value)
@@ -212,48 +258,65 @@ import { Component } from "react";
     handleEndDateChange(e){
         this.props.endDateWorkChange(e.target.getAttribute('data-id'),e.target.value)
     }
+    handleDelete(e){
+        this.props.handleDelete(e.target.getAttribute('data-id'));
+    }
 
 
     render(){
         return(<div>
-                <label> Company Name:
-                    <input
-                    data-id={this.props.work.id}
-                    type="text"
-                    value={this.props.work.company}
-                    onChange={this.handleCompanyChange}
-                    />
+                <label> 
+                    
+                    <div className="firstRow">
+                        Positional info
+                        <button className="close" alt="Delete" data-id={this.props.work.id} onClick={this.handleDelete} >X</button>
+                    </div>
+                    <div className="inputGroup">
+                        <input
+                            data-id={this.props.work.id}
+                            type="text"
+                            placeholder="Company Name"
+                            value={this.props.work.company}
+                            onChange={this.handleCompanyChange}
+                        />
+                        <input
+                            data-id={this.props.work.id}
+                            type="text"
+                            placeholder="Position"
+                            value={this.props.work.position}
+                            onChange={this.handlePositionChange}
+                        />
+
+                    </div>
                 </label>
-                <label> Position:
-                    <input
-                    data-id={this.props.work.id}
-                    type="text"
-                    value={this.props.work.position}
-                    onChange={this.handlePositionChange}
-                    />
+                <label> Experince Dates
+                    <div className="inputGroup">
+                        <input
+                            data-id={this.props.work.id}
+                            type="month"
+                            placeholder="Start Date"
+                            className="half"
+                            value={this.props.work.startDate}
+                            onChange={this.handleStartDateChange}
+                        />
+                        <input
+                            data-id={this.props.work.id}
+                            type="month"
+                            className="half"
+                            placeholder="End Date"
+                            value={this.props.work.endDate}
+                            onChange={this.handleEndDateChange}
+                        />
+                    </div>
+                    
                 </label>
-                <label> Main Tasks:
-                    <input
-                    data-id={this.props.work.id}
-                    type="textarea"
-                    value={this.props.work.tasks}
-                    onChange={this.handletasksChange}
-                    />
-                </label>
-                <label> Start Date:
-                    <input
-                    data-id={this.props.work.id}
-                    type="date"
-                    value={this.props.work.startDate}
-                    onChange={this.handleStartDateChange}
-                    />
-                </label>
-                <label> End Date:
-                    <input
-                    data-id={this.props.work.id}
-                    type="date"
-                    value={this.props.work.endDate}
-                    onChange={this.handleEndDateChange}
+                
+                <label> Main Tasks
+                    <textarea
+                        data-id={this.props.work.id}
+                        rows={5}
+                        value={this.props.work.tasks}
+                        onChange={this.handleTasksChange}
                     />
                 </label>
 
@@ -262,6 +325,25 @@ import { Component } from "react";
     }
 
 
+ }
+
+ class SkillsForm extends Component{
+    constructor(props){
+        super(props);
+        this.handleSkillsChange = this.handleSkillsChange.bind(this);
+    }
+    handleSkillsChange(e){
+        this.props.skillsChange(e.target.value);
+    }
+
+    render(){
+        return(<textarea
+                className="skillsText"
+                rows={5}
+                value={this.props.skills}
+                onChange={this.handleSkillsChange}
+            />);
+    }
  }
 
  class CVForm extends Component{
@@ -279,8 +361,10 @@ import { Component } from "react";
                         tasksChange = {this.props.tasksChange}
                         startDateWorkChange = {this.props.startDateWorkChange}
                         endDateWorkChange = {this.props.endDateWorkChange}
+                        handleDelete = {this.props.workDelete}
             
                         />);
+            workrows.push(<hr key = {uuid.v4()}/>);
             
         });
         this.props.education.forEach(educationexp => {
@@ -291,13 +375,15 @@ import { Component } from "react";
                                 titleChange = {this.props.titleChange}
                                 startDateChange = {this.props.startDateChange}
                                 endDateChange = {this.props.endDateChange}
+                                handleDelete = {this.props.educationDelete}
                                 />);
+            educationrows.push(<hr key = {uuid.v4()}/>);
             
         });
 
 
-        return(<div>
-                <h1>PersonalInfoForm</h1>
+        return(<div className="cvform">
+                <h1>Personal Info</h1>
                 <PersonalInfoForm
                 personalInfo = {this.props.personalInfo}
                 nameChange = {this.props.nameChange}
@@ -307,16 +393,27 @@ import { Component } from "react";
                 address1Change = {this.props.address1Change}
                 address2Change = {this.props.address2Change}
                 cityChange = {this.props.cityChange}
-                photoChange = {this.props.photoChange}
                 stateChange = {this.props.stateChange}
                 zipChange = {this.props.zipChange}
+                aboutChange = {this.props.aboutChange}
 
                 />
                 <h1>Work Experience</h1>
                 {workrows}
+                <div className="add">
+                    <button onClick={this.props.workAdd}>Add Work Experience</button>
+                </div>
+                
                 <h1>Studies</h1>
                 {educationrows}
-            
+                <div className="add">
+                    <button onClick={this.props.educationAdd}>Add Education</button>
+                </div>
+                <h1>Skills</h1>
+                <SkillsForm
+                    skills = {this.props.skills}
+                    skillsChange = {this.props.skillsChange}
+                />
 
 
         </div>);
