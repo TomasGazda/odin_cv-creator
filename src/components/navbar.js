@@ -41,7 +41,7 @@ class Navbar extends Component{
                 <div
                     className={this.state.isExpandedNav ? "navigation-menu expanded" : "navigation-menu"}>
                     <ul>
-                    <li>
+                   {/*  <li>
                         <a href="/">Home</a>
                     </li>
                     <li>
@@ -49,7 +49,7 @@ class Navbar extends Component{
                     </li>
                     <li>
                         <a href="/">Contact</a>
-                    </li>
+                    </li> */}
                     </ul>
                 </div>
         </nav>);
