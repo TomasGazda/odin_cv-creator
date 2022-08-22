@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import "./navbar.css"
+import "../styles/navbar.css"
 
 class Navbar extends Component{
     constructor(props){
@@ -25,7 +25,6 @@ class Navbar extends Component{
                     MacroSoft
                 </a>
                 <button className="hamburger" onClick={this.handleHanburgerClick}>
-                    {/* icon from heroicons.com */}
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import './CVform.css';
+import '../styles/CVform.css';
 import * as uuid from "uuid";
 
  class PersonalInfoForm extends Component{
@@ -183,7 +183,7 @@ import * as uuid from "uuid";
                 <label> 
                     <div className="firstRow">
                         Program information
-                        <button className="close" alt="Delete" data-id={this.props.education.id} onClick={this.handleDelete} >X</button>
+                        <button className="close" alt="Delete" data-id={this.props.education.id} onClick={this.handleDelete} disabled={this.props.length<2}>X</button>
                     </div>
                     <div className="inputGroup">
                         <input
@@ -269,7 +269,7 @@ import * as uuid from "uuid";
                     
                     <div className="firstRow">
                         Positional info
-                        <button className="close" alt="Delete" data-id={this.props.work.id} onClick={this.handleDelete} >X</button>
+                        <button className="close" alt="Delete" data-id={this.props.work.id} onClick={this.handleDelete} disabled={this.props.length<2} >X</button>
                     </div>
                     <div className="inputGroup">
                         <input
@@ -362,7 +362,7 @@ import * as uuid from "uuid";
                         startDateWorkChange = {this.props.startDateWorkChange}
                         endDateWorkChange = {this.props.endDateWorkChange}
                         handleDelete = {this.props.workDelete}
-            
+                        length = {this.props.works.length}
                         />);
             workrows.push(<hr key = {uuid.v4()}/>);
             
@@ -376,6 +376,8 @@ import * as uuid from "uuid";
                                 startDateChange = {this.props.startDateChange}
                                 endDateChange = {this.props.endDateChange}
                                 handleDelete = {this.props.educationDelete}
+                                length = {this.props.education.length}
+   
                                 />);
             educationrows.push(<hr key = {uuid.v4()}/>);
             
@@ -396,6 +398,7 @@ import * as uuid from "uuid";
                 stateChange = {this.props.stateChange}
                 zipChange = {this.props.zipChange}
                 aboutChange = {this.props.aboutChange}
+                length = {this.props.education.length}
 
                 />
                 <h1>Work Experience</h1>

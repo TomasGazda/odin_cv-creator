@@ -1,10 +1,12 @@
 
 import { Component } from 'react';
 import * as uuid from "uuid";
-import './App.css';
+import './styles/App.css';
 import { CV } from './components/CV';
 import { CVForm } from './components/CVform';
 import { Navbar } from "./components/navbar";
+
+// import printHtml from "./components/functions";
 
 
 
@@ -321,7 +323,7 @@ class App extends Component{
             
           </div>
           <div className='bottombar'>
-          {!this.state.updateValues && <button className='export'>Export PDF</button> }
+          {/* {!this.state.updateValues && <button onClick={printHtml} className='export'>Export PDF</button> } */}
           <button className='submit' onClick={this.handleUpdateValuesUpdate}>{this.state.updateValues? "Submit":"Edit"}</button>
           </div>
           

@@ -1,5 +1,6 @@
 import { Component } from "react";
-import './CV.css';
+import '../styles/CV.css';
+
 
  class PersonalInfo extends Component{
     render(){
@@ -108,7 +109,7 @@ import './CV.css';
            
         });
 
-        return(<div className="cv">
+        return(<div className="cv" id="cv_div">
                 <PersonalInfo
                     info = {this.props.personalInfo}
                 ></PersonalInfo>
