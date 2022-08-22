@@ -21,9 +21,9 @@ class Navbar extends Component{
     render(){
         return(
             <nav className="navigation">
-                <a href="/" className="brand-name">
-                    MacroSoft
-                </a>
+                <div  className="brand-name">
+                   CV Creator
+                </div>
                 <button className="hamburger" onClick={this.handleHanburgerClick}>
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
